@@ -27,13 +27,13 @@
     header h1 {
       margin: 0;
       font-size: 2em;
-      color: #fff;
+      color: #2e125c;
     }
 
     header p {
       margin: 0.5em 0 0;
       font-size: 0.9em;
-      color: #e0d0ff;
+      color: #6e4e93;
     }
 
     .view {
@@ -55,7 +55,7 @@
       margin-bottom: 1em;
       padding: 1em;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      color: white;
+      color: #2e125c;
     }
 
     .restaurant-item h3 {
@@ -67,7 +67,7 @@
     .restaurant-item p {
       margin: 0.25em 0 0;
       font-size: 0.9em;
-      color: #e6e6e6;
+      color: #8472a2;
     }
 
     nav {
@@ -88,9 +88,17 @@
     nav button {
       background: none;
       border: none;
-      color: white;
-      font-size: 1.5em;
+      color: inherit;
       cursor: pointer;
+      padding: 0;
+    }
+
+    nav svg {
+      width: 28px;
+      height: 28px;
+      stroke: #2e125c;
+      stroke-width: 1.5;
+      fill: none;
     }
   </style>
 </head>
@@ -127,9 +135,15 @@
   </div>
 
   <nav>
-    <button title="Restaurants" onclick="showView('homeView')">🍴</button>
-    <button title="Votes" onclick="showView('votesView')">📊</button>
-    <button title="Team" onclick="showView('teamView')">👥</button>
+    <button title="Restaurants" onclick="showView('homeView')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 3v18m8-18v18m8-18v18"/></svg>
+    </button>
+    <button title="Votes" onclick="showView('votesView')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18M9 17V9m6 8V5"/></svg>
+    </button>
+    <button title="Team" onclick="showView('teamView')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2m6-4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6m-2-3h4"/></svg>
+    </button>
   </nav>
 
   <script>
