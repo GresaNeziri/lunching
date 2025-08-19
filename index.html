@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Lunching</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-      font-family: 'Oscar Oboe';
-      src: url('https://example.com/fonts/OscarOboe.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-    }
-
     html, body {
-      font-family: 'Oscar Oboe', 'Outfit', sans-serif;
+      font-family: 'Outfit', sans-serif;
       margin: 0;
       padding: 0;
       background: linear-gradient(135deg, #e8d5ff, #bca2f7);
@@ -75,6 +68,12 @@
       margin: 0.25em 0 0;
       font-size: 0.9em;
       color: #8472a2;
+    }
+
+    .restaurant-item a {
+      color: #5f37b9;
+      text-decoration: none;
+      font-size: 0.85em;
     }
 
     nav {
@@ -165,13 +164,13 @@
 
   <nav>
     <button title="Restaurants" onclick="showView('homeView')">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
     </button>
     <button title="Votes" onclick="showView('votesView')">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/></svg>
     </button>
     <button title="Team" onclick="showView('teamView')">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
     </button>
   </nav>
 
@@ -179,19 +178,13 @@
 
   <script>
     const restaurants = [
-  { name: "Bagolina", category: "mix", price: "$$" },
-  { name: "Bon Bouquet Café & Lounge", category: "mix", price: "$$" },
-  { name: "Missini Sweets & Food", category: "mix", price: "$$" },
-  { name: "Heminguey", category: "seafood", price: "$$$" },
-  { name: "Olive Bakery", category: "bakery", price: "$" },
-  { name: "Meridian Express", category: "homemade", price: "$" },
-  { name: "Ellie coffe and wine", category: "mix", price: "$$" },
-  { name: "Extreme Pizza", category: "mix", price: "$" },
-  { name: "French Tacos", category: "tacos+", price: "$" },
-  { name: "Furra Lumi", category: "bakery", price: "$" },
-  // ...more rows...
-];
-
+      { name: "Bagolina", category: "mix", price: "$$", location: "https://maps.app.goo.gl/URsmfKFtnkttNPQj8" },
+      { name: "Bon Bouquet Café & Lounge", category: "mix", price: "$$", location: "https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8" },
+      { name: "Missini Sweets & Food", category: "mix", price: "$$", location: "https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7" },
+      { name: "Heminguey", category: "seafood", price: "$$$", location: "https://maps.app.goo.gl/ctdRqfci1HP544EUA" },
+      { name: "Olive Bakery", category: "bakery", price: "$", location: "https://maps.app.goo.gl/yKCRyXn56PSrDbx9A" }
+      // ... add more here or load from file/server
+    ];
 
     function renderRestaurants() {
       const container = document.getElementById('restaurantList');
@@ -201,6 +194,7 @@
           <div class="restaurant-item">
             <h3>${r.name}</h3>
             <p>${r.category} • ${r.price}</p>
+            <a href="${r.location}" target="_blank">Open in Maps</a>
           </div>
         `;
       });
