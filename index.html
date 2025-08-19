@@ -27,7 +27,6 @@
     header h1 {
       margin: 0;
       font-size: 2em;
-      color: #2e125c;
     }
 
     header p {
@@ -55,7 +54,6 @@
       margin-bottom: 1em;
       padding: 1em;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      color: #2e125c;
     }
 
     .restaurant-item h3 {
@@ -67,13 +65,7 @@
     .restaurant-item p {
       margin: 0.25em 0 0;
       font-size: 0.9em;
-      color: #8472a2;
-    }
-
-    .restaurant-item a {
-      color: #5f37b9;
-      text-decoration: none;
-      font-size: 0.85em;
+      color: #4f3e65;
     }
 
     nav {
@@ -96,7 +88,6 @@
       border: none;
       color: inherit;
       cursor: pointer;
-      padding: 0;
     }
 
     nav svg {
@@ -122,7 +113,6 @@
       justify-content: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       cursor: pointer;
-      transition: background 0.3s;
     }
 
     .fab:hover {
@@ -137,17 +127,38 @@
   </header>
 
   <div class="view active" id="homeView">
-    <div id="restaurantList"></div>
+    <div id="restaurantList">
+      <!-- Injected restaurant items below -->
+      <!-- Begin restaurant list -->
+      <!-- Automatically generated from Excel -->
+      <div class="restaurant-item">
+        <h3><a href="https://maps.app.goo.gl/URsmfKFtnkttNPQj8" target="_blank" style="color: inherit; text-decoration: none;">Bagolina</a></h3>
+        <p>mix • $$</p>
+      </div>
+      <div class="restaurant-item">
+        <h3><a href="https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8" target="_blank" style="color: inherit; text-decoration: none;">Bon Bouquet Café & Lounge</a></h3>
+        <p>mix • $$</p>
+      </div>
+      <div class="restaurant-item">
+        <h3><a href="https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7" target="_blank" style="color: inherit; text-decoration: none;">Missini Sweets & Food</a></h3>
+        <p>mix • $$</p>
+      </div>
+      <div class="restaurant-item">
+        <h3><a href="https://maps.app.goo.gl/ctdRqfci1HP544EUA" target="_blank" style="color: inherit; text-decoration: none;">Heminguey</a></h3>
+        <p>seafood • $$$</p>
+      </div>
+      <div class="restaurant-item">
+        <h3><a href="https://maps.app.goo.gl/yKCRyXn56PSrDbx9A" target="_blank" style="color: inherit; text-decoration: none;">Olive Bakery</a></h3>
+        <p>bakery • $</p>
+      </div>
+      <!-- End restaurant list -->
+    </div>
   </div>
 
   <div class="view" id="votesView">
     <div class="restaurant-item">
       <h3>Balkan Burger</h3>
       <p>🏆 Winner - 2025-08-19</p>
-    </div>
-    <div class="restaurant-item">
-      <h3>Veggie Vibe</h3>
-      <p>2025-08-18</p>
     </div>
   </div>
 
@@ -156,20 +167,16 @@
       <h3>Team Member 1</h3>
       <p>Votes: 4</p>
     </div>
-    <div class="restaurant-item">
-      <h3>Team Member 2</h3>
-      <p>Votes: 3</p>
-    </div>
   </div>
 
   <nav>
-    <button title="Restaurants" onclick="showView('homeView')">
+    <button onclick="showView('homeView')" title="Restaurants">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
     </button>
-    <button title="Votes" onclick="showView('votesView')">
+    <button onclick="showView('votesView')" title="Votes">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/></svg>
     </button>
-    <button title="Team" onclick="showView('teamView')">
+    <button onclick="showView('teamView')" title="Team">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
     </button>
   </nav>
@@ -177,35 +184,10 @@
   <div class="fab" onclick="alert('Add restaurant flow coming soon!')">+</div>
 
   <script>
-    const restaurants = [
-      { name: "Bagolina", category: "mix", price: "$$", location: "https://maps.app.goo.gl/URsmfKFtnkttNPQj8" },
-      { name: "Bon Bouquet Café & Lounge", category: "mix", price: "$$", location: "https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8" },
-      { name: "Missini Sweets & Food", category: "mix", price: "$$", location: "https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7" },
-      { name: "Heminguey", category: "seafood", price: "$$$", location: "https://maps.app.goo.gl/ctdRqfci1HP544EUA" },
-      { name: "Olive Bakery", category: "bakery", price: "$", location: "https://maps.app.goo.gl/yKCRyXn56PSrDbx9A" }
-      // ... add more here or load from file/server
-    ];
-
-    function renderRestaurants() {
-      const container = document.getElementById('restaurantList');
-      container.innerHTML = '';
-      restaurants.forEach(r => {
-        container.innerHTML += `
-          <div class="restaurant-item">
-            <h3>${r.name}</h3>
-            <p>${r.category} • ${r.price}</p>
-            <a href="${r.location}" target="_blank">Open in Maps</a>
-          </div>
-        `;
-      });
-    }
-
     function showView(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById(viewId).classList.add('active');
     }
-
-    renderRestaurants();
   </script>
 </body>
 </html>
