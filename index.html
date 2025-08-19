@@ -107,6 +107,28 @@
       stroke-width: 1.5;
       fill: none;
     }
+
+    .fab {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #836FFF;
+      color: white;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .fab:hover {
+      background: #a270f0;
+    }
   </style>
 </head>
 <body>
@@ -152,6 +174,8 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
     </button>
   </nav>
+
+  <div class="fab" onclick="alert('Add restaurant flow coming soon!')">+</div>
 
   <script>
     const restaurants = [
