@@ -1,193 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="UTF-8">
   <title>Lunching</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body {
-      font-family: 'Outfit', sans-serif;
+    @font-face {
+      font-family: 'Oscar Oboe';
+      src: url('https://fonts.cdnfonts.com/s/125473/OscarOboeTrial-Regular.woff') format('woff');
+    }
+
+    body {
+      font-family: 'Oscar Oboe', sans-serif;
+      background: #1C1427;
+      color: #D4D4D4;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #e8d5ff, #bca2f7);
-      color: #2e125c;
+    }
+
+    .container {
       max-width: 430px;
-      margin-left: auto;
-      margin-right: auto;
-      height: 100vh;
-      overflow: hidden;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
+      padding: 24px;
       text-align: center;
-      padding: 2em 1em 1em;
     }
 
     header h1 {
-      margin: 0;
       font-size: 2em;
+      margin: 0;
+      color: white;
     }
 
     header p {
-      margin: 0.5em 0 0;
       font-size: 0.9em;
-      color: #6e4e93;
+      margin-top: 4px;
+      color: #888;
     }
 
-    .view {
-      display: none;
-      flex-direction: column;
-      height: calc(100vh - 160px);
-      overflow-y: auto;
-      padding: 1em;
-    }
-
-    .view.active {
-      display: flex;
+    #restaurantList {
+      padding: 0 20px;
     }
 
     .restaurant-item {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      margin-bottom: 1em;
-      padding: 1em;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-bottom: 1px solid #333;
+      padding: 12px 0;
     }
 
     .restaurant-item h3 {
-      margin: 0;
-      font-weight: 600;
-      font-size: 1.1em;
+      margin: 0 0 4px 0;
+      font-size: 1.2em;
+      color: white;
     }
 
     .restaurant-item p {
-      margin: 0.25em 0 0;
-      font-size: 0.9em;
-      color: #4f3e65;
+      margin: 0;
+      font-size: 0.85em;
+      color: #aaa;
     }
 
     nav {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 0.8em 0;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      max-width: 430px;
-      margin: auto;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: inherit;
-      cursor: pointer;
+      background-color: #2B1B44;
+      border-top: 1px solid #333;
+      padding: 10px 0;
     }
 
     nav svg {
-      width: 28px;
-      height: 28px;
-      stroke: #2e125c;
-      stroke-width: 1.5;
-      fill: none;
+      width: 26px;
+      height: 26px;
+      stroke: #D4D4D4;
     }
 
-    .fab {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #836FFF;
-      color: white;
-      font-size: 2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: pointer;
+    .view {
+      display: none;
     }
 
-    .fab:hover {
-      background: #a270f0;
+    .view.active {
+      display: block;
     }
   </style>
+  <script src="https://unpkg.com/tabletop@1.5.1/tabletop.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Lunching</h1>
-    <p>to lunch or not to lunch</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Lunching</h1>
+      <p>to lunch or not to lunch</p>
+    </header>
 
-  <div class="view active" id="homeView">
-    <div id="restaurantList">
-      <!-- Injected restaurant items below -->
-      <!-- Begin restaurant list -->
-      <!-- Automatically generated from Excel -->
-      <div class="restaurant-item">
-        <h3><a href="https://maps.app.goo.gl/URsmfKFtnkttNPQj8" target="_blank" style="color: inherit; text-decoration: none;">Bagolina</a></h3>
-        <p>mix • $$</p>
-      </div>
-      <div class="restaurant-item">
-        <h3><a href="https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8" target="_blank" style="color: inherit; text-decoration: none;">Bon Bouquet Café & Lounge</a></h3>
-        <p>mix • $$</p>
-      </div>
-      <div class="restaurant-item">
-        <h3><a href="https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7" target="_blank" style="color: inherit; text-decoration: none;">Missini Sweets & Food</a></h3>
-        <p>mix • $$</p>
-      </div>
-      <div class="restaurant-item">
-        <h3><a href="https://maps.app.goo.gl/ctdRqfci1HP544EUA" target="_blank" style="color: inherit; text-decoration: none;">Heminguey</a></h3>
-        <p>seafood • $$$</p>
-      </div>
-      <div class="restaurant-item">
-        <h3><a href="https://maps.app.goo.gl/yKCRyXn56PSrDbx9A" target="_blank" style="color: inherit; text-decoration: none;">Olive Bakery</a></h3>
-        <p>bakery • $</p>
-      </div>
-      <!-- End restaurant list -->
+    <div class="view active" id="homeView">
+      <div id="restaurantList"></div>
     </div>
-  </div>
 
-  <div class="view" id="votesView">
-    <div class="restaurant-item">
-      <h3>Balkan Burger</h3>
-      <p>🏆 Winner - 2025-08-19</p>
+    <div class="view" id="votesView">
+      <p style="padding: 20px;">Voting view under construction.</p>
     </div>
-  </div>
 
-  <div class="view" id="teamView">
-    <div class="restaurant-item">
-      <h3>Team Member 1</h3>
-      <p>Votes: 4</p>
+    <div class="view" id="teamView">
+      <p style="padding: 20px;">Team members will be listed here.</p>
     </div>
+
+    <nav>
+      <div onclick="showView('homeView')" title="Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/>
+        </svg>
+      </div>
+      <div onclick="showView('votesView')" title="Votes">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
+          <path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/>
+        </svg>
+      </div>
+      <div onclick="showView('teamView')" title="Team">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>
+        </svg>
+      </div>
+    </nav>
   </div>
-
-  <nav>
-    <button onclick="showView('homeView')" title="Restaurants">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-    </button>
-    <button onclick="showView('votesView')" title="Votes">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/></svg>
-    </button>
-    <button onclick="showView('teamView')" title="Team">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-    </button>
-  </nav>
-
-  <div class="fab" onclick="alert('Add restaurant flow coming soon!')">+</div>
 
   <script>
     function showView(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById(viewId).classList.add('active');
     }
+
+    function renderRestaurants(data) {
+      const container = document.getElementById("restaurantList");
+      container.innerHTML = "";
+
+      data.forEach(row => {
+        const item = document.createElement("div");
+        item.className = "restaurant-item";
+
+        const linkOpen = row["Location link"] ? `<a href="${row["Location link"]}" target="_blank" style="color: inherit; text-decoration: none;">` : "";
+        const linkClose = row["Location link"] ? `</a>` : "";
+
+        item.innerHTML = `
+          <h3>${linkOpen}${row.Name}${linkClose}</h3>
+          <p>${row.Category?.toLowerCase() ?? ""} • ${row.Pricing ?? ""}</p>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      Tabletop.init({
+        key: 'https://docs.google.com/spreadsheets/d/13HIR7Fdts-a4DhSOK4Brg84rqTwVe0QKLdJVlwXMfpw/pubhtml',
+        simpleSheet: true,
+        callback: renderRestaurants
+      });
+    });
   </script>
 </body>
 </html>
