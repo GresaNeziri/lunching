@@ -2,225 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Lunching</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Secret of Sauce – Restaurant Voting</title>
   <style>
-    html, body {
-      font-family: 'Outfit', sans-serif;
+    body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #e8d5ff, #bca2f7);
-      color: #2e125c;
-      max-width: 430px;
-      margin-left: auto;
-      margin-right: auto;
-      height: 100vh;
-      overflow: hidden;
+      padding: 2em;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1b24;
+      color: #f0e7ff;
     }
 
-    header {
-      text-align: center;
-      padding: 2em 1em 1em;
-    }
-
-    header h1 {
-      margin: 0;
+    h1 {
       font-size: 2em;
-    }
-
-    header p {
-      margin: 0.5em 0 0;
-      font-size: 0.9em;
-      color: #6e4e93;
-    }
-
-    .view {
-      display: none;
-      flex-direction: column;
-      height: calc(100vh - 160px);
-      overflow-y: auto;
-      padding: 1em;
-    }
-
-    .view.active {
-      display: flex;
+      margin-bottom: 1em;
+      color: #a78bfa;
     }
 
     .restaurant-item {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 16px;
-      margin-bottom: 1em;
       padding: 1em;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 1.2em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     .restaurant-item h3 {
       margin: 0;
-      font-weight: 600;
-      font-size: 1.1em;
     }
 
     .restaurant-item p {
-      margin: 0.25em 0 0;
-      font-size: 0.9em;
-      color: #4f3e65;
+      margin: 0.3em 0;
+      font-size: 0.95em;
+      color: #dcd6f5;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 0.8em 0;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      max-width: 430px;
-      margin: auto;
-    }
-
-    nav button {
-      background: none;
+    .vote-button {
+      background: rgba(131, 111, 255, 0.2);
+      color: #f0e7ff;
       border: none;
-      color: inherit;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.85em;
       cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
     }
 
-    nav svg {
-      width: 28px;
-      height: 28px;
-      stroke: #2e125c;
-      stroke-width: 1.5;
-      fill: none;
+    .vote-button:hover {
+      background: rgba(131, 111, 255, 0.4);
     }
 
-    .fab {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #836FFF;
-      color: white;
-      font-size: 2em;
+    .vote-count {
+      font-size: 0.8em;
+      color: #b9aef5;
+      margin-top: 0.5em;
+      display: block;
+    }
+
+    .restaurant-header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: pointer;
     }
 
-    .fab:hover {
-      background: #a270f0;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Lunching</h1>
-    <p>to lunch or not to lunch</p>
-  </header>
+  <h1>Vote for Your Favorite Restaurant</h1>
 
-  <div class="view active" id="homeView">
-    <div id="restaurantList">
-      <!-- Injected restaurant items below -->
-      <!-- Begin restaurant list -->
-<div class="restaurant-item" data-name="Bagolina">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3><a href="https://maps.app.goo.gl/URsmfKFtnkttNPQj8" target="_blank" style="color: inherit; text-decoration: none;">Bagolina</a></h3>
-      <p>mix • €€</p>
-    </div>
-    <button class="vote-button" onclick="voteRestaurant('Bagolina')">Vote</button>
+  <div id="restaurantList">
+    <!-- Restaurant items inserted below -->
   </div>
-  <span id="Bagolina-votes" class="vote-count">0 votes</span>
-</div>
-
-<div class="restaurant-item" data-name="Bon Bouquet Café & Lounge">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3><a href="https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8" target="_blank" style="color: inherit; text-decoration: none;">Bon Bouquet Café & Lounge</a></h3>
-      <p>mix • €€</p>
-    </div>
-    <button class="vote-button" onclick="voteRestaurant('Bon Bouquet Café & Lounge')">Vote</button>
-  </div>
-  <span id="Bon Bouquet Café & Lounge-votes" class="vote-count">0 votes</span>
-</div>
-
-<div class="restaurant-item" data-name="Missini Sweets & Food">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3><a href="https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7" target="_blank" style="color: inherit; text-decoration: none;">Missini Sweets & Food</a></h3>
-      <p>mix • €€</p>
-    </div>
-    <button class="vote-button" onclick="voteRestaurant('Missini Sweets & Food')">Vote</button>
-  </div>
-  <span id="Missini Sweets & Food-votes" class="vote-count">0 votes</span>
-</div>
-
-<div class="restaurant-item" data-name="Heminguey">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3><a href="https://maps.app.goo.gl/ctdRqfci1HP544EUA" target="_blank" style="color: inherit; text-decoration: none;">Heminguey</a></h3>
-      <p>seafood • €€€</p>
-    </div>
-    <button class="vote-button" onclick="voteRestaurant('Heminguey')">Vote</button>
-  </div>
-  <span id="Heminguey-votes" class="vote-count">0 votes</span>
-</div>
-
-<div class="restaurant-item" data-name="Olive Bakery">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3><a href="https://maps.app.goo.gl/yKCRyXn56PSrDbx9A" target="_blank" style="color: inherit; text-decoration: none;">Olive Bakery</a></h3>
-      <p>bakery • €</p>
-    </div>
-    <button class="vote-button" onclick="voteRestaurant('Olive Bakery')">Vote</button>
-  </div>
-  <span id="Olive Bakery-votes" class="vote-count">0 votes</span>
-</div>
-<!-- End restaurant list -->
-    </div>
-  </div>
-
-  <div class="view" id="votesView">
-    <div class="restaurant-item">
-      <h3>Balkan Burger</h3>
-      <p>🏆 Winner - 2025-08-19</p>
-    </div>
-  </div>
-
-  <div class="view" id="teamView">
-    <div class="restaurant-item">
-      <h3>Team Member 1</h3>
-      <p>Votes: 4</p>
-    </div>
-  </div>
-
-  <nav>
-    <button onclick="showView('homeView')" title="Restaurants">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-    </button>
-    <button onclick="showView('votesView')" title="Votes">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/></svg>
-    </button>
-    <button onclick="showView('teamView')" title="Team">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-    </button>
-  </nav>
-
-  <div class="fab" onclick="alert('Add restaurant flow coming soon!')">+</div>
 
   <script>
-    function showView(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(viewId).classList.add('active');
+    const restaurants = [
+      { name: "Bagolina", type: "mix", url: "https://maps.app.goo.gl/URsmfKFtnkttNPQj8", price: "€€" },
+      { name: "Bon Bouquet Café & Lounge", type: "mix", url: "https://maps.app.goo.gl/1xJEcH8q3BaAKz8F8", price: "€€" },
+      { name: "Missini Sweets & Food", type: "mix", url: "https://maps.app.goo.gl/Q7RYaVpchWJaxUoE7", price: "€€" },
+      { name: "Heminguey", type: "seafood", url: "https://maps.app.goo.gl/ctdRqfci1HP544EUA", price: "€€€" },
+      { name: "Olive Bakery", type: "bakery", url: "https://maps.app.goo.gl/yKCRyXn56PSrDbx9A", price: "€" },
+      { name: "Meridian Express", type: "homemade", url: "https://maps.app.goo.gl/fAd4XtAYUvVgQ2a9A", price: "€" },
+      { name: "Ellie coffe and wine", type: "mix", url: "https://maps.app.goo.gl/KXFa9QCoSDKNUMfN9", price: "€€" },
+      { name: "Extreme Pizza", type: "mix", url: "https://maps.app.goo.gl/z5zvTFDs9jhaZ7HN8", price: "€" },
+      { name: "Furra Lumi", type: "bakery", url: "https://maps.app.goo.gl/WMAEUEgsKGU949DD8", price: "€" },
+      { name: "Sonder", type: "mix", url: "https://maps.app.goo.gl/biU1MHrHz3XPiV168", price: "€€" },
+      { name: "Taverna Greke", type: "greek", url: "https://maps.app.goo.gl/PXxgra864HXFfjS47", price: "€€€" },
+      { name: "Le Sandwich", type: "sandwich", url: "https://maps.app.goo.gl/X2GBJim3i4i2LeoGA", price: "€" },
+      { name: "SETTE - Ristorante Italiano", type: "italian", url: "https://maps.app.goo.gl/9S7ve6g6xDXmk6878", price: "€€€" },
+      { name: "Taverna Baron", type: "tavern", url: "https://maps.app.goo.gl/ubvj8d4ddQGixP2R6", price: "€€" },
+      { name: "Taverna Ibra", type: "tavern", url: "https://maps.app.goo.gl/yHz7SGuVBjvvTvQL9", price: "€€" },
+      { name: "Te Martini", type: "tavern", url: "https://maps.app.goo.gl/2f9rA1rN3znWxzA97", price: "€€" },
+      { name: "Suzi/Brion", type: "tost", url: "https://maps.app.goo.gl/5RwmjvB4yp5Xr3GP8", price: "€" },
+      { name: "Pishat", type: "mix", url: "https://maps.app.goo.gl/9WpSmDJEnQwqEA3v8", price: "€€" },
+      { name: "BUFFÁLO Prishtine", type: "burger", url: "https://maps.app.goo.gl/5AUipAUCM8VFdMAn8", price: "€€" },
+      { name: "Tat’s", type: "healthy", url: "https://maps.app.goo.gl/LhwzPTov13WhSBAt6", price: "€€" },
+      { name: "Trosha Bakery Cafe", type: "bakery", url: "https://maps.app.goo.gl/ttqneT2qAE4UQPmVA", price: "€" },
+      { name: "Sarajeva Steak House", type: "meat", url: "https://maps.app.goo.gl/JHpzwh7HTyaFJ5pr7", price: "€€" },
+      { name: "Chop Sandwich Club", type: "sandwich", url: "https://maps.app.goo.gl/QhEXS5T9FAH8Wiho7", price: "€" },
+      { name: "Jana Napoletana Pizza", type: "pizza", url: "https://maps.app.goo.gl/jmJypGwYQpMsTh3p8", price: "€€€" },
+      { name: "Fresco Taste", type: "healthy", url: "https://maps.app.goo.gl/xT3EX6JFa1FsMp9L7", price: "€€" },
+      { name: "Crust n Crumb", type: "healthy", url: "https://maps.app.goo.gl/18p2Mygc3ZG1uC7k7", price: "€€" },
+      { name: "HOME Restaurant", type: "mix", url: "https://maps.app.goo.gl/R9R17uwWqpg3k8KTA", price: "€€" },
+      { name: "Metro", type: "sandwich/salad", url: "https://maps.app.goo.gl/f85SBuLriBFzGTPp8", price: "€€" },
+      { name: "Baba Ganoush Meze", type: "vegetarian", url: "https://maps.app.goo.gl/ivBpiB9sajAfVFh26", price: "€€" },
+      { name: "Papirun", type: "sandwich/salad", url: "https://maps.app.goo.gl/rhYHhJWdAXHEy32J6", price: "€€" },
+      { name: "Osteria Linda", type: "mix", url: "https://maps.app.goo.gl/o6dthHaRAGYTqFcq9", price: "€€" },
+      { name: "Green & Protein Centre", type: "healthy", url: "https://maps.app.goo.gl/4Pox5TrgRB4ygk776", price: "€€" },
+      { name: "Pikadilli", type: "burek", url: "https://maps.app.goo.gl/HBs6qcNPPwWQBk2P6", price: "€" }
+    ];
+
+    const voteCounts = JSON.parse(localStorage.getItem("restaurantVotes") || "{}");
+
+    function voteRestaurant(name) {
+      voteCounts[name] = (voteCounts[name] || 0) + 1;
+      localStorage.setItem("restaurantVotes", JSON.stringify(voteCounts));
+      document.getElementById(`${name}-votes`).innerText = `${voteCounts[name]} votes`;
     }
+
+    window.onload = function () {
+      const container = document.getElementById("restaurantList");
+      restaurants.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "restaurant-item";
+        div.innerHTML = `
+          <div class="restaurant-header">
+            <div>
+              <h3><a href="${r.url}" target="_blank">${r.name}</a></h3>
+              <p>${r.type} • ${r.price}</p>
+            </div>
+            <button class="vote-button" onclick="voteRestaurant('${r.name}')">Vote</button>
+          </div>
+          <span id="${r.name}-votes" class="vote-count">${voteCounts[r.name] || 0} votes</span>
+        `;
+        container.appendChild(div);
+      });
+    };
   </script>
 </body>
 </html>
